@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { css, C } from "./constants";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { PageBanner } from "./components/UI";
 import LoginPage    from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AdminPage    from "./pages/AdminPage";
 import ProfilePage  from "./pages/ProfilePage";
+// import HomePage from "./pages/HomePage";
+// import AboutPage from "./pages/HomePage";
 
 export default function App() {
   const [page, setPage]               = useState("login");
@@ -34,11 +37,14 @@ export default function App() {
         <Navbar page={page} setPage={setPage} currentUser={currentUser} />
         {(page === "admin" || page === "profile") && <PageBanner {...bannerProps[page]} />}
         <div style={{ flex:1, display:"flex", flexDirection:"column" }}>
+          {/* {page === "home"     && <HomePage />} */}
+          {/* {page === "about"     && <AboutPage />} */}
           {page === "login"    && <LoginPage    setPage={setPage} onLogin={handleLogin} />}
           {page === "register" && <RegisterPage setPage={setPage} onLogin={handleLogin} />}
           {page === "admin"    && <AdminPage />}
           {page === "profile"  && <ProfilePage currentUser={currentUser} />}
         </div>
+        <Footer/>
       </div>
     </>
   );
