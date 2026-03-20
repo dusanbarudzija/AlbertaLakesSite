@@ -2,6 +2,7 @@ import commentsData from './comments.json';
 import usersData from './users.json';
 import waterbodiesData from './waterbodies.json';
 import samplesData from './samples.json';
+import sitesData from './sites.json';
 
 const getUsernameById = (userId) => {
     const user = usersData.find(u => u._id === userId);
@@ -75,6 +76,25 @@ export const getSavedLocations = (userId) => {
         };
     });
 };
+
+// One object per waterbody, joining sites + latest sample
+export const lakes = waterbodiesData.map((wb) => {
+    const site = sitesData.find(s => s.waterBodyId === wb._id);
+    const sample = samplesData.find(s => s.waterbodyId === wb._id);
+    const cellCount = sample?.totalCyanobacterial_cells_mL ?? null;
+
+    return {
+        id: wb._id,
+        name: wb.name,
+        imageUrl: wb.imageUrl,
+        beachName: site?.beachName ?? null,
+        latitude: site?.location.latitude ?? null,
+        longitude: site?.location.longitude ?? null,
+        level: getLevel(cellCount),
+        microcystin: sample?.microcystinLR_ugL ?? null,
+        waterTemp: sample?.waterTemp_C ?? null,
+    };
+});
 
 export const userComments = commentsData
     .filter(c => c.reviewStatus === "approved")

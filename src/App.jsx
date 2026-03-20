@@ -7,11 +7,11 @@ import LoginPage    from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import AdminPage    from "./pages/AdminPage";
 import ProfilePage  from "./pages/ProfilePage";
-// import HomePage from "./pages/HomePage";
-// import AboutPage from "./pages/HomePage";
+import HomePage from "./pages/HomePage";
+// import AboutPage from "./pages/AboutPage";
 
 export default function App() {
-  const [page, setPage]               = useState("login");
+  const [page, setPage] = useState("home");
   const [currentUser, setCurrentUser] = useState(null);
 
   const handleLogin   = user => { setCurrentUser(user); setPage(user.role === "admin" ? "admin" : "profile"); };
@@ -37,7 +37,7 @@ export default function App() {
         <Navbar page={page} setPage={setPage} currentUser={currentUser} />
         {(page === "admin" || page === "profile") && <PageBanner {...bannerProps[page]} />}
         <div style={{ flex:1, display:"flex", flexDirection:"column" }}>
-          {/* {page === "home"     && <HomePage />} */}
+           {page === "home"     && <HomePage />}
           {/* {page === "about"     && <AboutPage />} */}
           {page === "login"    && <LoginPage    setPage={setPage} onLogin={handleLogin} />}
           {page === "register" && <RegisterPage setPage={setPage} onLogin={handleLogin} />}
