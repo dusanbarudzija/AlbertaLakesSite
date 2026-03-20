@@ -1,6 +1,5 @@
 import commentsData from './comments.json';
 import usersData from './users.json';
-import userCommentsData from './userComments.json';
 import waterbodiesData from './waterbodies.json';
 import samplesData from './samples.json';
 
@@ -26,13 +25,15 @@ const getLevel = (cells) => {
     return "Low";
 };
 
-export const reports = commentsData.map((c, i) => ({
-    id: i + 1,
-    username: getUsernameById(c.userId),
-    comment: c.commentText,
-    date: formatDate(c.commentDateTime),
-    status: c.reviewStatus,
-}));
+export const reports = commentsData
+    .filter(c => c.reviewStatus === "pending")
+    .map((c, i) => ({
+        id: i + 1,
+        username: getUsernameById(c.userId),
+        comment: c.commentText,
+        date: formatDate(c.commentDateTime),
+        status: c.reviewStatus,
+    }));
 
 // We don't have pH values in the dataset, so not sure if we want to report this later.
 const phByWaterbody = {
@@ -75,9 +76,11 @@ export const getSavedLocations = (userId) => {
     });
 };
 
-export const userComments = userCommentsData.map((c, i) => ({
-    id: i + 1,
-    location: getWaterbodyNameById(c.waterbodyId),
-    date: formatDate(c.commentDateTime),
-    comment: c.commentText,
-}));
+export const userComments = commentsData
+    .filter(c => c.reviewStatus === "approved")
+    .map((c, i) => ({
+        id: i + 1,
+        location: getWaterbodyNameById(c.waterbodyId),
+        date: formatDate(c.commentDateTime),
+        comment: c.commentText,
+    }));
