@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { C } from "../constants";
 import { NAV_LOGO, TextInput, PrimaryBtn, AuthWrap } from "../components/UI";
+import usersData from "../data/users.json";
 
 export default function LoginPage({ setPage, onLogin }) {
   const [email, setEmail] = useState("");
@@ -9,8 +10,8 @@ export default function LoginPage({ setPage, onLogin }) {
 
   const submit = () => {
     if (!email || !pw) { setErr("Please fill in all fields."); return; }
-    if (email === "admin@test.com" && pw === "admin") { onLogin({ username:"adminUser", role:"admin" }); return; }
-    if (email.includes("@") && pw.length >= 3) { onLogin({ username: email.split("@")[0], role:"user" }); return; }
+    const user = usersData.find(u => u.email === email);
+    if (user && pw.length >= 3) { onLogin({ _id: user._id, username: user.username, role: user.role }); return; }
     setErr("Invalid email or password.");
   };
 

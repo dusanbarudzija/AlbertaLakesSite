@@ -1,5 +1,13 @@
 [
   {
+    "_id": "5349b4ddd2781d08c098912c",
+    "username": "admin",
+    "email": "admin@test.com",
+    "role": "admin",
+    "subscribed": true,
+    "savedLakes": []
+  },
+  {
     "_id": "5349b4ddd2781d08c098912d",
     "username": "admin1",
     "email": "admin1@lakewatch.ca",
