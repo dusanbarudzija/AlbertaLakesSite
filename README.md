@@ -2,6 +2,8 @@
 
 A React web application for exploring Alberta lakes, built with Vite and React Leaflet.
 
+By Ashley Anderson, Dusan Barudzija, Fred Deng, Saad Foda, & Brighton Gosinet
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18 or higher recommended)
