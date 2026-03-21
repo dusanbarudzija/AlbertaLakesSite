@@ -6,7 +6,7 @@ import sitesData from './sites.json';
 
 const getUsernameById = (userId) => {
     const user = usersData.find(u => u._id === userId);
-    return user ? user.username : 'unknown';
+    return user ? user.username : 'Unknown';
 };
 
 const getWaterbodyNameById = (wbId) => {
@@ -77,10 +77,12 @@ export const getSavedLocations = (userId) => {
     });
 };
 
-// One object per waterbody, joining sites + latest sample
+// One object per waterbody, joining sites + most recent sample
 export const lakes = waterbodiesData.map((wb) => {
     const site = sitesData.find(s => s.waterBodyId === wb._id);
-    const sample = samplesData.find(s => s.waterbodyId === wb._id);
+    const sample = samplesData
+        .filter(s => s.waterbodyId === wb._id)
+        .sort((a, b) => new Date(b.collectionDateTime) - new Date(a.collectionDateTime))[0] ?? null;
     const cellCount = sample?.totalCyanobacterial_cells_mL ?? null;
 
     return {
@@ -104,3 +106,24 @@ export const userComments = commentsData
         date: formatDate(c.commentDateTime),
         comment: c.commentText,
     }));
+
+export const getMostRecentSample = (waterbodyId) => {
+    const samples = samplesData
+        .filter(s => s.waterbodyId === waterbodyId)
+        .sort((a, b) => new Date(b.collectionDateTime) - new Date(a.collectionDateTime));
+    return samples.length > 0 ? samples[0] : null;
+};
+
+export const getLakeComments = (waterbodyId) =>
+    commentsData
+        .filter(c => c.waterbodyId === waterbodyId && c.reviewStatus === "approved")
+        .sort((a, b) => new Date(b.commentDateTime) - new Date(a.commentDateTime))
+        .slice(0, 5)
+        .map((c, i) => ({
+            id: c._id,
+            username: getUsernameById(c.userId),
+            date: formatDate(c.commentDateTime),
+            comment: c.commentText,
+        }));
+
+export { formatDate };

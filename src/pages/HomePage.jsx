@@ -1,20 +1,56 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { C } from "../constants";
 import SearchBar from "../components/SearchBar";
 import LakeCard from "../components/LakeCard";
 import LakeMap from "../components/LakeMap";
 import { lakes } from "../data/index.js";
 // import { SectionLabel ***.... } from "../components/UI";
+import LakeDetail from "../components/LakeDetail";
 
 
-export default function HomePage() {
+export default function HomePage({ currentUser, setPage }) {
   const [query, setQuery] = useState("");
   const [selectedLake, setSelectedLake] = useState(null);
+  const [detailLake, setDetailLake] = useState(null);
 
-  const filtered = useMemo(() =>
-    lakes.filter(l => l.name.toLowerCase().includes(query.toLowerCase())),
-    [query]
+  const filteredLakes = lakes.filter(l =>
+    l.name.toLowerCase().includes(query.toLowerCase())
   );
+
+  const handleLakeClick = (lake) => {
+    setSelectedLake(lake);
+    setDetailLake(lake);
+  };
+
+  const renderColumnContent = () => {
+    if (detailLake) {
+      return (
+        <LakeDetail
+          lake={detailLake}
+          currentUser={currentUser}
+          setPage={setPage}
+          onBack={() => setDetailLake(null)}
+        />
+      );
+    }
+
+    if (filteredLakes.length === 0) {
+      return (
+        <p style={{ color: C.ink4, fontSize: 14, textAlign: "center", marginTop: 24 }}>
+          No lakes found.
+        </p>
+      );
+    }
+
+    return filteredLakes.map(lake => (
+      <LakeCard
+        key={lake.id}
+        lake={lake}
+        selected={selectedLake?.id === lake.id}
+        onClick={handleLakeClick}
+      />
+    ));
+  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 56, paddingBottom: 48, flex: 1 }}>
@@ -53,7 +89,7 @@ export default function HomePage() {
         flex: 1,
         minHeight: 520,
       }}>
-        {/* Lake list */}
+        {/* Lake list / detail column */}
         <div style={{
           width: "38%",
           flexShrink: 0,
@@ -63,20 +99,7 @@ export default function HomePage() {
           gap: 10,
           paddingRight: 4,
         }}>
-          {filtered.length === 0 ? (
-            <p style={{ color: C.ink4, fontSize: 14, textAlign: "center", marginTop: 24 }}>
-              No lakes found.
-            </p>
-          ) : (
-            filtered.map(lake => (
-              <LakeCard
-                key={lake.id}
-                lake={lake}
-                selected={selectedLake?.id === lake.id}
-                onClick={setSelectedLake}
-              />
-            ))
-          )}
+          {renderColumnContent()}
         </div>
 
         {/* Map panel */}

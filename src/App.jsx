@@ -37,7 +37,7 @@ export default function App() {
         <Navbar page={page} setPage={setPage} currentUser={currentUser} />
         {(page === "admin" || page === "profile") && <PageBanner {...bannerProps[page]} />}
         <div style={{ flex:1, display:"flex", flexDirection:"column" }}>
-           {page === "home"     && <HomePage />}
+           {page === "home"     && <HomePage currentUser={currentUser} setPage={setPage} />}
           {/* {page === "about"     && <AboutPage />} */}
           {page === "login"    && <LoginPage    setPage={setPage} onLogin={handleLogin} />}
           {page === "register" && <RegisterPage setPage={setPage} onLogin={handleLogin} />}
