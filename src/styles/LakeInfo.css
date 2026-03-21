@@ -51,6 +51,12 @@
   gap: 10px;
 }
 
+.lake-info-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
 .lake-info-field-label {
   font-size: 12px;
   font-weight: 500;
@@ -119,6 +125,30 @@
 
 .lake-info-submit-btn:hover {
   opacity: 0.8;
+}
+
+.lake-info-add-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  line-height: 0;
+  transition: opacity 0.15s;
+}
+
+.lake-info-add-icon-btn:hover {
+  opacity: 0.75;
+}
+
+.lake-info-add-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .lake-info-comments-heading {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { levelColor } from "../constants";
 import { getMostRecentSample, getLakeComments, formatDate } from "../data";
 import "../styles/LakeInfo.css";
+import addLakeIcon from "../public/assets/addLake.png";
 
 export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
   const sample = getMostRecentSample(lake.id);
@@ -26,6 +27,14 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
     };
     // This will be sent to db via POST
     setCommentText("");
+  };
+
+  const handleAddToSaved = () => {
+    const savedLocation = {
+      userId: currentUser._id,
+      waterbodyId: lake.id,
+    };
+    // This will be sent to db via POST
   };
 
   return (
@@ -60,6 +69,26 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
               {sampleDate && <span className="lake-info-field-date">({sampleDate})</span>}
             </div>
           </div>
+        </div>
+
+        <div className="lake-info-card-footer">
+          {currentUser ? (
+            <button
+              type="button"
+              onClick={handleAddToSaved}
+              className="lake-info-add-icon-btn"
+            >
+              <img src={addLakeIcon} alt="" className="lake-info-add-icon" />
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setPage("login")}
+              className="lake-info-add-icon-btn"
+            >
+              <img src={addLakeIcon} alt="" className="lake-info-add-icon" />
+            </button>
+          )}
         </div>
       </div>
 
