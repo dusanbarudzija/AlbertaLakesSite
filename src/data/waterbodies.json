@@ -1,0 +1,67 @@
+[
+  {
+    "_id": "5349b4ddd2781d08c0989001",
+    "name": "Half Moon Lake",
+    "imageUrl": "https://example.com/images/half-moon-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989002",
+    "name": "Hasse Lake",
+    "imageUrl": "https://example.com/images/hasse-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989003",
+    "name": "Isle Lake",
+    "imageUrl": "https://example.com/images/isle-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989004",
+    "name": "Pigeon Lake",
+    "imageUrl": "https://example.com/images/pigeon-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989005",
+    "name": "Wabamun Lake",
+    "imageUrl": "https://example.com/images/wabamun-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989006",
+    "name": "Wizard Lake",
+    "imageUrl": "https://example.com/images/wizard-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989007",
+    "name": "Auburn Bay",
+    "imageUrl": "https://example.com/images/auburn-bay.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989008",
+    "name": "Baptiste Lake",
+    "imageUrl": "https://example.com/images/baptiste-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989009",
+    "name": "Beaver Lake",
+    "imageUrl": "https://example.com/images/beaver-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c098900a",
+    "name": "Beta Lake",
+    "imageUrl": "https://example.com/images/beta-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c098900b",
+    "name": "Elk Island Lake",
+    "imageUrl": "https://example.com/images/elk-island-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c098900c",
+    "name": "Beaverhill Lake",
+    "imageUrl": "https://example.com/images/beaverhill-lake.jpg"
+  },
+  {
+    "_id": "5349b4ddd2781d08c098900d",
+    "name": "Whitemud Creek",
+    "imageUrl": "https://example.com/images/whitemud-creek.jpg"
+  }
+]

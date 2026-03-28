@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "5349b4ddd2781d08c0989065",
+    "waterBodyId": "5349b4ddd2781d08c0989001",
+    "beachName": "Half Moon Lake Resort",
+    "beachAccessNumber": "9601218",
+    "location": {
+      "latitude": 53.456039,
+      "longitude": -113.083959
+    }
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989066",
+    "waterBodyId": "5349b4ddd2781d08c0989002",
+    "beachName": "Hasse Lake Day Use Area",
+    "beachAccessNumber": "9601224",
+    "location": {
+      "latitude": 53.49002,
+      "longitude": -114.177402
+    }
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989067",
+    "waterBodyId": "5349b4ddd2781d08c0989003",
+    "beachName": "Gainford Beach",
+    "beachAccessNumber": "9602751",
+    "location": {
+      "latitude": 53.590493,
+      "longitude": -114.790092
+    }
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989068",
+    "waterBodyId": "5349b4ddd2781d08c0989003",
+    "beachName": "Kokomoko Day Use Area",
+    "beachAccessNumber": "9602376",
+    "location": {
+      "latitude": 53.598707,
+      "longitude": -114.760845
+    }
+  },
+  {
+    "_id": "5349b4ddd2781d08c098906f",
+    "waterBodyId": "5349b4ddd2781d08c098900b",
+    "beachName": "Elk Island Lake Beach",
+    "beachAccessNumber": "9601230",
+    "location": {
+      "latitude": 53.592,
+      "longitude": -112.87
+    }
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989070",
+    "waterBodyId": "5349b4ddd2781d08c098900c",
+    "beachName": "Beaverhill Lake Shore",
+    "beachAccessNumber": "9601231",
+    "location": {
+      "latitude": 53.456,
+      "longitude": -112.54
+    }
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989071",
+    "waterBodyId": "5349b4ddd2781d08c098900d",
+    "beachName": "Whitemud Creek Access",
+    "beachAccessNumber": "9601232",
+    "location": {
+      "latitude": 53.497,
+      "longitude": -113.549
+    }
+  }
+]

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { C, mockSavedLocations, mockComments, levelColor } from "../constants";
+import { C, levelColor } from "../constants";
+import { getSavedLocations, userComments } from "../data";
 import { SectionLabel } from "../components/UI";
 
 export default function ProfilePage({ currentUser }) {
-  const [locations, setLocations] = useState(mockSavedLocations);
-  const [comments,  setComments]  = useState(mockComments);
+  const [locations, setLocations] = useState(getSavedLocations(currentUser?._id));
+  const [comments,  setComments]  = useState(userComments);
   const [expanded, setExpanded]   = useState(null);
 
   return (

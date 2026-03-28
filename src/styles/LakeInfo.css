@@ -1,0 +1,197 @@
+.lake-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lake-info-back-btn {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #1a7a6f;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.lake-info-back-arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.lake-info-card {
+  background: #ffffff;
+  border: 1.5px solid #e8e3d8;
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.lake-info-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.lake-info-lake-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #0d1f1e;
+  margin: 0;
+}
+
+.lake-info-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lake-info-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.lake-info-field-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #7a9290;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lake-info-field-value {
+  font-size: 14px;
+  color: #2a3d3b;
+  margin-top: 2px;
+}
+
+.lake-info-field-date {
+  font-size: 12px;
+  color: #7a9290;
+  margin-left: 8px;
+}
+
+.lake-info-comment-box {
+  background: #ffffff;
+  border: 1.5px solid #e8e3d8;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.lake-info-comment-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2a3d3b;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.lake-info-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1.5px solid #e8e3d8;
+  border-radius: 8px;
+  color: #0d1f1e;
+  background: #f5f2eb;
+  outline: none;
+  resize: vertical;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.15s;
+}
+
+.lake-info-textarea:focus {
+  border-color: #2bbfaf;
+}
+
+.lake-info-submit-btn {
+  margin-top: 8px;
+  padding: 9px 20px;
+  background: #1a7a6f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.lake-info-submit-btn:hover {
+  opacity: 0.8;
+}
+
+.lake-info-add-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  line-height: 0;
+  transition: opacity 0.15s;
+}
+
+.lake-info-add-icon-btn:hover {
+  opacity: 0.75;
+}
+
+.lake-info-add-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.lake-info-comments-heading {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a9290;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.lake-info-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lake-info-comment-card {
+  background: #ffffff;
+  border: 1px solid #e8e3d8;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.lake-info-comment-header {
+  margin-bottom: 6px;
+}
+
+.lake-info-comment-user {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: #1a7a6f;
+  font-weight: 500;
+}
+
+.lake-info-comment-date {
+  font-size: 12px;
+  color: #7a9290;
+}
+
+.lake-info-comment-text {
+  margin: 0;
+  font-size: 13px;
+  color: #4a5e5c;
+  font-style: italic;
+  line-height: 1.6;
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "_id": "5349b4ddd2781d08c098912c",
+    "username": "admin",
+    "email": "admin@test.com",
+    "role": "admin",
+    "subscribed": true,
+    "savedLakes": []
+  },
+  {
+    "_id": "5349b4ddd2781d08c098912d",
+    "username": "admin1",
+    "email": "admin1@lakewatch.ca",
+    "role": "admin",
+    "subscribed": true,
+    "savedLakes": []
+  },
+  {
+    "_id": "5349b4ddd2781d08c098912e",
+    "username": "admin2",
+    "email": "admin2@lakewatch.ca",
+    "role": "admin",
+    "subscribed": true,
+    "savedLakes": []
+  },
+  {
+    "_id": "5349b4ddd2781d08c098912f",
+    "username": "lakeWatcher99",
+    "email": "lakewatcher99@email.com",
+    "role": "viewer",
+    "subscribed": true,
+    "savedLakes": [
+      "5349b4ddd2781d08c0989001",
+      "5349b4ddd2781d08c0989004",
+      "5349b4ddd2781d08c0989008"
+    ]
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989130",
+    "username": "enviroUser42",
+    "email": "envirouser42@email.com",
+    "role": "viewer",
+    "subscribed": false,
+    "savedLakes": [
+      "5349b4ddd2781d08c0989002",
+      "5349b4ddd2781d08c0989003"
+    ]
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989131",
+    "username": "sampleUser1234",
+    "email": "sampleuser1234@email.com",
+    "role": "viewer",
+    "subscribed": true,
+    "savedLakes": [
+      "5349b4ddd2781d08c0989001"
+    ]
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989132",
+    "username": "sampleUser1235",
+    "email": "sampleuser1235@email.com",
+    "role": "viewer",
+    "subscribed": false,
+    "savedLakes": [
+      "5349b4ddd2781d08c0989006",
+      "5349b4ddd2781d08c0989009"
+    ]
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989133",
+    "username": "sampleUser1236",
+    "email": "sampleuser1236@email.com",
+    "role": "viewer",
+    "subscribed": true,
+    "savedLakes": [
+      "5349b4ddd2781d08c0989007"
+    ]
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989134",
+    "username": "sampleUser1237",
+    "email": "sampleuser1237@email.com",
+    "role": "viewer",
+    "subscribed": true,
+    "savedLakes": [
+      "5349b4ddd2781d08c098900a",
+      "5349b4ddd2781d08c0989003"
+    ]
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989135",
+    "username": "sampleUser1238",
+    "email": "sampleuser1238@email.com",
+    "role": "viewer",
+    "subscribed": false,
+    "savedLakes": [
+      "5349b4ddd2781d08c0989005",
+      "5349b4ddd2781d08c0989002"
+    ]
+  },
+  {
+    "_id": "5349b4ddd2781d08c0989136",
+    "username": "sampleUser1239",
+    "email": "sampleuser1239@email.com",
+    "role": "viewer",
+    "subscribed": true,
+    "savedLakes": [
+      "5349b4ddd2781d08c0989004",
+      "5349b4ddd2781d08c0989008",
+      "5349b4ddd2781d08c0989009"
+    ]
+  }
+]

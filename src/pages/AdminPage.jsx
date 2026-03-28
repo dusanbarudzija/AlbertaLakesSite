@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { C, mockReports } from "../constants";
+import { C } from "../constants";
+import { reports as initialReports } from "../data";
 import { SectionLabel } from "../components/UI";
 import Toast from "../components/Toast";
 
 export default function AdminPage() {
-  const [reports, setReports] = useState(mockReports);
+  const [reports, setReports] = useState(initialReports);
   const [selected, setSelected] = useState(null);
   const [toast, setToast] = useState(null);
 
