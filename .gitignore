@@ -12,6 +12,10 @@ dist
 # excel data files
 *.xlsx
 
+# seed & data
+server/seeds/
+server/data/
+
 # editor/OS files
 .DS_Store
 *.swp
