@@ -103,7 +103,11 @@ router.get('/me', async (req, res) => {
   if (!req.session.username) {
     return res.status(401).json({ message: "Not logged in." });
   }
-  res.json({ username: user.username, role: user.role, email: user.email }); });
+  const user = await User.findOne({ username: req.session.username });
+  if (!user) {
+    return res.status(404).json({ message: "User not found." });
+  }
+  res.json({ user: { username: user.username, role: user.role, email: user.email } }); });
 
 router.post('/logout', (req, res) => {
   // terminate session

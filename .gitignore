@@ -12,9 +12,9 @@ dist
 # excel data files
 *.xlsx
 
-# seed & data
-server/seeds/
+# seed data
 server/data/
+server/seeds/
 
 # editor/OS files
 .DS_Store
