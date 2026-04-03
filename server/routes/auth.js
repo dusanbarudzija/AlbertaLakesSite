@@ -86,7 +86,7 @@ router.post('/login', async (req, res) => { // validate input, find user, compar
 
     req.session.username = user.username; // store username in session
 
-    res.json({message: "Login successful.", username: user.username});
+    res.json({message: "Login successful.", username: user.username, role: user.role});
 
   } catch (error) {
     console.error("LOGIN ERROR:", error);
@@ -103,8 +103,7 @@ router.get('/me', async (req, res) => {
   if (!req.session.username) {
     return res.status(401).json({ message: "Not logged in." });
   }
-  res.json({ username: req.session.username });
-});
+  res.json({ username: user.username, role: user.role, email: user.email }); });
 
 router.post('/logout', (req, res) => {
   // terminate session
@@ -115,18 +114,25 @@ router.post('/logout', (req, res) => {
 
 // Middleware
 
-function auth(req, res, next) {
+async function auth(req, res, next) {
   // check if user is logged in + set req.user
   if (!req.session.username) {
-    return res.status(401).json({ message: "Not logged in." });
+    return res.status(401).json({message: "Not logged in."});
   }
-  req.user = { username: req.session.username };
+
+  const user = await User.findOne({username: req.session.username});
+
+  if (!user) {
+    return res.status(404).json({message: "User not found."});
+  }
+
+  req.user = user;
   next();
 }
 
 function requireAdmin(req, res, next) {
   // check if req.user.role is admin
-  if (req.user.username !== 'admin') {
+  if (req.user.role !== 'admin') {
     return res.status(403).json({ message: "Admin access required." });
   }
   next(); 
