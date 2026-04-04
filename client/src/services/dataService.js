@@ -22,7 +22,7 @@ export const fetchLakes = async () => {
 };
 
 export const fetchLakeComments = async (waterbodyId) => {
-  const data = await api.fetchComments({ waterbodyId, reviewStatus: 'approved' });
+  const data = await api.fetchComments({ waterbodyId });
   return data.slice(0, 5).map(c => ({
     id: c._id,
     username: c.username,
@@ -37,6 +37,7 @@ export const fetchCommentsForReview = async () => {
   return data.map(c => ({
     id: c._id,
     username: c.username,
+    waterbodyName: c.waterbodyName,
     comment: c.commentText,
     date: formatDate(c.commentDateTime),
     status: c.reviewStatus,

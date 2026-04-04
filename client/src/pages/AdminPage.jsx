@@ -48,6 +48,10 @@ export default function AdminPage() {
               <p style={{ fontSize:"15px", fontWeight:"500", color:C.ink }}>{selected.username}</p>
               <p style={{ fontSize:"12px", color:C.ink4, marginTop:"4px" }}>{selected.date}</p>
             </div>
+            <div style={{ background:C.sand, borderRadius:"10px", padding:"14px 16px", marginBottom:"16px" }}>
+              <p style={{ fontSize:"12px", color:C.teal600, fontWeight:"600", marginBottom:"4px", textTransform:"uppercase", letterSpacing:"0.05em" }}>Lake</p>
+              <p style={{ fontSize:"15px", fontWeight:"500", color:C.ink }}>{selected.waterbodyName}</p>
+            </div>
             <p style={{ fontSize:"12px", color:C.ink3, fontWeight:"600", marginBottom:"8px", textTransform:"uppercase", letterSpacing:"0.05em" }}>Comment</p>
             <p style={{ fontSize:"14px", color:C.ink2, lineHeight:"1.6", background:C.sand, padding:"12px 14px", borderRadius:"8px", fontStyle:"italic" }}>"{selected.comment}"</p>
             <div style={{ display:"flex", gap:"10px", marginTop:"1.5rem" }}>
@@ -74,7 +78,8 @@ export default function AdminPage() {
                 <span style={{ fontSize:"13px", fontWeight:"600", color:C.ink }}>{r.username}</span>
                 <span style={{ fontSize:"11px", color:C.ink4 }}>{r.date}</span>
               </div>
-              <p style={{ margin:0, fontSize:"13px", color:C.ink3, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>"{r.comment}"</p>
+              <p style={{ margin:0, fontSize:"12px", color:C.teal600, marginTop:"2px" }}>{r.waterbodyName}</p>
+              <p style={{ margin:0, fontSize:"13px", color:C.ink3, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", marginTop:"2px" }}>"{r.comment}"</p>
             </div>
             <div style={{ display:"flex", gap:"1rem", flexShrink:0 }}>
               <span className="action-btn" onClick={() => setSelected(r)} style={{ fontSize:"13px", fontWeight:"500", cursor:"pointer", color:C.teal600 }}>View</span>
@@ -100,7 +105,8 @@ export default function AdminPage() {
                     <span style={{ fontSize:"13px", fontWeight:"600", color:C.ink }}>{r.username}</span>
                     <span style={{ fontSize:"11px", color:C.ink4 }}>{r.date}</span>
                   </div>
-                  <p style={{ margin:0, fontSize:"13px", color:C.ink3, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>"{r.comment}"</p>
+                  <p style={{ margin:0, fontSize:"12px", color:C.teal600, marginTop:"2px" }}>{r.waterbodyName}</p>
+                  <p style={{ margin:0, fontSize:"13px", color:C.ink3, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", marginTop:"2px" }}>"{r.comment}"</p>
                 </div>
                 <span className="pill" style={{ background:"#c8efd8", color:C.green }}>Approved</span>
               </div>

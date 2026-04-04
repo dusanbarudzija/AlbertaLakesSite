@@ -37,7 +37,7 @@ export default function ProfilePage({ currentUser, setPage, setProfileSelectedLa
                   <div style={{ display:"flex", gap:"1.5rem", flexWrap:"wrap" }}>
                     {[
                       ["Water Description", loc.waterDescription],
-                      ["Cell Count", loc.cellCount != null ? loc.cellCount.toLocaleString() + "/mL" : null],
+                      ["Cells/mL", loc.cellCount != null ? loc.cellCount.toLocaleString() : null],
                       ...(expanded === loc._id ? [
                         ["Beach", loc.beachName]
                       ] : [])

@@ -6,13 +6,14 @@ const Waterbody = require('../models/Waterbody');
 const { auth, requireAdmin } = require('./auth');
 
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   // get comments
   try {
     const { waterbodyId, reviewStatus } = req.query;
 
-    // Admin page: fetch all comments
-    if (req.user.role === 'admin' && !waterbodyId) {
+    // Admin page: fetch all comments (requires login + admin)
+    const user = req.session.username ? await User.findOne({ username: req.session.username }) : null;
+    if (user?.role === 'admin' && !waterbodyId) {
       const filter = {};
 
       if (reviewStatus) {

@@ -27,12 +27,13 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
   const cellCountDate = lake.cellCountDate ? formatDate(lake.cellCountDate) : null;
 
   const handleSubmit = () => {
-    if (!commentText.trim()) return;
+    if (!commentText.trim()) return showToast("Comment cannot be empty.", "error");
     submitComment(lake._id, commentText.trim())
       .then(() => {
         setCommentText("");
+        showToast("Comment submitted! It will appear here once reviewed.", "success");
       })
-      .catch(console.error);
+      .catch(() => showToast("Error submitting comment.", "error"));
   };
 
   const handleAddToSaved = () => {
@@ -46,14 +47,15 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
 
   return (
     <>
-      {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
-
       <div className="page-fade lake-info">
 
-        {/* Back button */}
-      <button onClick={onBack} className="lake-info-back-btn">
-        <span className="lake-info-back-arrow">&larr;</span> Back to Lakes
-      </button>
+        {/* Back button + toast row */}
+      <div style={{ display:"flex", alignItems:"center", gap:"36px" }}>
+        <button onClick={onBack} className="lake-info-back-btn">
+          <span className="lake-info-back-arrow">&larr;</span> Back to Lakes
+        </button>
+        {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} inline />}
+      </div>
 
       {/* Main lake card */}
       <div className="lake-info-card">
@@ -107,7 +109,7 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
       <div className="lake-info-comment-box">
         <label className="lake-info-comment-label">Leave a Comment</label>
         <textarea
-          className="lake-info-textarea"
+          className={`lake-info-textarea ${commentText.trim() ? "has-text" : "is-empty"}`}
           value={commentText}
           onChange={e => setCommentText(e.target.value)}
           placeholder="Share your recent thoughts about this lake..."
