@@ -82,3 +82,6 @@ export const fetchSavedLakes = () => get("/users/me/savedLakes");
 
 export const removeSavedLake = (waterbodyId) =>
   remove(`/users/me/savedLakes/${waterbodyId}`);
+
+export const fetchUserComments = () =>
+  get('/comments/mine');

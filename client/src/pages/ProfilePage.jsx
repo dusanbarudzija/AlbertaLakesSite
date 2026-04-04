@@ -10,7 +10,7 @@ export default function ProfilePage({ currentUser, setPage, setProfileSelectedLa
 
   useEffect(() => {
     fetchSavedLakes().then(setLocations).catch(console.error);
-    fetchUserComments(currentUser?._id).then(setComments).catch(console.error);
+    fetchUserComments().then(setComments).catch(console.error);
   }, [currentUser]);
 
   return (

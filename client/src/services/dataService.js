@@ -43,13 +43,13 @@ export const fetchCommentsForReview = async () => {
   }));
 };
 
-export const fetchUserComments = async (userId) => {
-  const data = await api.fetchComments({ userId });
+export const fetchUserComments = async () => {
+  const data = await api.fetchUserComments();
   return data.map(c => ({
-    id: c._id,
-    location: c.waterbodyName,
-    date: formatDate(c.commentDateTime),
-    comment: c.commentText,
+    id: c.id,
+    location: c.location,
+    date: formatDate(c.date),
+    comment: c.comment,
   }));
 };
 
