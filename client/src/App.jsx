@@ -15,6 +15,10 @@ import { getMe, logout } from "./services/dataService";
 export default function App() {
   const [page, setPage] = useState("home");
   const [currentUser, setCurrentUser] = useState(null);
+  const [profileSelectedLakeId, setProfileSelectedLakeId] = useState(null);
+  const [lakes, setLakes] = useState([]);
+  const [selectedLake, setSelectedLake] = useState(null);
+  const [detailLake, setDetailLake] = useState(null);
 
   useEffect(() => {
     getMe()
@@ -48,12 +52,25 @@ export default function App() {
         <Navbar page={page} setPage={setPage} currentUser={currentUser} />
         {(page === "admin" || page === "profile") && <PageBanner {...bannerProps[page]} />}
         <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-          {page === "home" && <HomePage currentUser={currentUser} setPage={setPage} />}
+          <div style={{ display: page === "home" ? "flex" : "none", flexDirection: "column", flex: 1 }}>
+            <HomePage
+              currentUser={currentUser}
+              setPage={setPage}
+              profileSelectedLakeId={profileSelectedLakeId}
+              setProfileSelectedLakeId={setProfileSelectedLakeId}
+              lakes={lakes}
+              setLakes={setLakes}
+              selectedLake={selectedLake}
+              setSelectedLake={setSelectedLake}
+              detailLake={detailLake}
+              setDetailLake={setDetailLake}
+            />
+          </div>
           {page === "about" && <AboutPage />}
           {page === "login" && <LoginPage setPage={setPage} onLogin={handleLogin} />}
           {page === "register" && <RegisterPage setPage={setPage} onLogin={handleLogin} />}
           {page === "admin" && <AdminPage />}
-          {page === "profile" && <ProfilePage currentUser={currentUser} />}
+          {page === "profile" && <ProfilePage currentUser={currentUser} setPage={setPage} setProfileSelectedLakeId={setProfileSelectedLakeId} />}
           {!["home", "about", "login", "register", "admin", "profile"].includes(page) && (
             <NotFoundPage setPage={setPage} />
           )}

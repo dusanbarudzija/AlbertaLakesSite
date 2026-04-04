@@ -8,15 +8,25 @@ import { fetchLakes } from "../services/dataService";
 import LakeInfo from "../components/LakeInfo";
 
 
-export default function HomePage({ currentUser, setPage }) {
-  const [lakes, setLakes] = useState([]);
+export default function HomePage({ currentUser, setPage, profileSelectedLakeId, setProfileSelectedLakeId, lakes, setLakes, selectedLake, setSelectedLake, detailLake, setDetailLake }) {
   const [query, setQuery] = useState("");
-  const [selectedLake, setSelectedLake] = useState(null);
-  const [detailLake, setDetailLake] = useState(null);
 
   useEffect(() => {
-    fetchLakes().then(setLakes).catch(console.error);
+    if (lakes.length === 0) {
+      fetchLakes().then(setLakes).catch(console.error);
+    }
   }, []);
+
+  useEffect(() => {
+    if (profileSelectedLakeId && lakes.length > 0) {
+      const lake = lakes.find(l => l._id === profileSelectedLakeId);
+      if (lake) {
+        setSelectedLake(lake);
+        setDetailLake(lake);
+      }
+      setProfileSelectedLakeId(null);
+    }
+  }, [profileSelectedLakeId, lakes]);
 
   const filteredLakes = lakes.filter(l =>
     l.name.toLowerCase().includes(query.toLowerCase())
@@ -34,7 +44,7 @@ export default function HomePage({ currentUser, setPage }) {
           lake={detailLake}
           currentUser={currentUser}
           setPage={setPage}
-          onBack={() => setDetailLake(null)}
+          onBack={() => { setDetailLake(null); setSelectedLake(null); }}
         />
       );
     }

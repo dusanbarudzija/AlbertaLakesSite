@@ -3,7 +3,7 @@ import { C, levelColor } from "../constants";
 import { fetchSavedLakes, removeSavedLake, fetchUserComments, deleteComment } from "../services/dataService";
 import { SectionLabel } from "../components/UI";
 
-export default function ProfilePage({ currentUser }) {
+export default function ProfilePage({ currentUser, setPage, setProfileSelectedLakeId }) {
   const [locations, setLocations] = useState([]);
   const [comments,  setComments]  = useState([]);
   const [expanded, setExpanded]   = useState(null);
@@ -32,18 +32,29 @@ export default function ProfilePage({ currentUser }) {
                 <div>
                   <div style={{ display:"flex", alignItems:"center", gap:"10px", marginBottom:"8px" }}>
                     <span style={{ fontSize:"15px", fontWeight:"600", color:C.ink }}>{loc.name}</span>
-                    <span className="pill" style={{ background:lc.bg, color:lc.text, border:`1px solid ${lc.border}` }}>{loc.level}</span>
+                    <span className="pill" style={{ background:lc.bg, color:lc.text, border:`1px solid ${lc.border}` }}>{loc.level ?? "No data"}</span>
                   </div>
                   <div style={{ display:"flex", gap:"1.5rem", flexWrap:"wrap" }}>
-                    {[["Algae", loc.algae], ["Level", loc.level], ...(expanded===loc._id ? [["pH", loc.ph], ["Temp", loc.temp]] : [])].map(([k, v]) => (
+                    {[
+                      ["Water Description", loc.waterDescription],
+                      ["Cell Count", loc.cellCount != null ? loc.cellCount.toLocaleString() : null],
+                      ...(expanded === loc._id ? [
+                        ["Beach", loc.beachName]
+                      ] : [])
+                    ].map(([k, v]) => (
                       <span key={k} style={{ fontSize:"13px", color:C.ink3 }}>
-                        <span style={{ fontWeight:"500", color:C.ink2 }}>{k}: </span>{v}
+                        <span style={{ fontWeight:"500", color:C.ink2 }}>{k}: </span>{v ?? "No data"}
                       </span>
                     ))}
                   </div>
                 </div>
                 <div style={{ display:"flex", gap:"14px", alignItems:"center", flexShrink:0 }}>
                   <span style={{ fontSize:"12px", color:C.ink4 }}>{expanded===loc._id ? "▲" : "▼"}</span>
+                  <span className="action-btn"
+                    onClick={e => { e.stopPropagation(); setProfileSelectedLakeId(loc._id); setPage("home"); }}
+                    style={{ fontSize:"13px", color:C.teal600, cursor:"pointer", fontWeight:"500" }}>
+                    View
+                  </span>
                   <span className="action-btn"
                     onClick={e => { e.stopPropagation(); removeSavedLake(loc._id).then(() => setLocations(l => l.filter(x => x._id !== loc._id))).catch(console.error); }}
                     style={{ fontSize:"13px", color:C.red, cursor:"pointer", fontWeight:"500" }}>

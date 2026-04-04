@@ -1,18 +1,25 @@
 import { useState, useEffect } from "react";
 import { levelColor } from "../constants";
 import { fetchLakeComments, submitComment, saveLake, formatDate } from "../services/dataService";
+import Toast from "./Toast";
 import "../styles/LakeInfo.css";
 import addLakeIcon from "../public/assets/addLake.png";
 
 export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
+  const [toast, setToast] = useState(null);
 
   useEffect(() => {
     fetchLakeComments(lake._id).then(setComments).catch(console.error);
   }, [lake._id]);
 
   const lc = levelColor(lake.level);
+
+  const showToast = (msg, type) => {
+    setToast({ msg, type });
+    setTimeout(() => setToast(null), 2500);
+  };
 
   const waterDesc = lake.waterDescription || "No data";
   const waterDescDate = lake.waterDescriptionDate ? formatDate(lake.waterDescriptionDate) : null;
@@ -29,12 +36,21 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
   };
 
   const handleAddToSaved = () => {
-    saveLake(lake._id).catch(console.error);
+    saveLake(lake._id)
+      .then(() => showToast("Lake saved!", "success"))
+      .catch(e => {
+        if (e.message === "Lake already saved.") showToast("Already saved!", "error");
+        else showToast("Failed to save.", "error");
+      });
   };
 
   return (
-    <div className="page-fade lake-info">
-      {/* Back button */}
+    <>
+      {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
+
+      <div className="page-fade lake-info">
+
+        {/* Back button */}
       <button onClick={onBack} className="lake-info-back-btn">
         <span className="lake-info-back-arrow">&larr;</span> Back to Lakes
       </button>
@@ -120,5 +136,6 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
         </div>
       )}
     </div>
+    </>
   );
 }

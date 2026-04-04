@@ -17,6 +17,8 @@ function FlyTo({ lake }) {
   useEffect(() => {
     if (lake?.latitude && lake?.longitude) {
       map.flyTo([lake.latitude, lake.longitude], 11, { duration: 1 });
+    } else {
+      map.flyTo([53.5, -113.5], 7, { duration: 1 });
     }
   }, [lake, map]);
   return null;
