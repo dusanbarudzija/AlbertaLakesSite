@@ -199,3 +199,78 @@
   font-style: italic;
   line-height: 1.6;
 }
+
+/* Three-dot menu container */
+.lake-info-menu-container {
+    position: relative;
+}
+
+/* Three-dot button */
+.lake-info-menu-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #5a6a72;
+    cursor: pointer;
+    padding: 4px 8px;
+    line-height: 1;
+    transition: color 0.2s ease;
+    border-radius: 4px;
+}
+
+.lake-info-menu-button:hover {
+    color: #1a7a6f;
+    background: #f0f4f5;
+}
+
+/* Dropdown menu */
+.lake-info-menu-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    background: white;
+    border: 1px solid #d1d9dd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 140px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+/* Menu item */
+.lake-info-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 16px;
+    background: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #333;
+}
+
+.lake-info-menu-item:hover {
+    background: #f8f9fa;
+}
+
+.lake-info-menu-item.delete {
+    color: #dc3545;
+}
+
+.lake-info-menu-item.delete:hover {
+    background: #fff5f5;
+}
+
+/* Update comment header to use flexbox */
+.lake-info-comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
