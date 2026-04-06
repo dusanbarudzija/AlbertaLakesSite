@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { levelColor } from "../constants";
-import { fetchLakeComments, submitComment, saveLake, formatDate } from "../services/dataService";
+import { fetchLakeComments, submitComment, deleteComment, saveLake, formatDate } from "../services/dataService";
 import Toast from "./Toast";
 import "../styles/LakeInfo.css";
 import addLakeIcon from "../public/assets/addLake.png";
@@ -9,10 +9,25 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
   const [comments, setComments] = useState([]);
   const [commentText, setCommentText] = useState("");
   const [toast, setToast] = useState(null);
+  const [openMenuId, setOpenMenuId] = useState(null);
+  const [deleteConfirmToast, setDeleteConfirmToast] = useState(null);
 
-  useEffect(() => {
+
+    useEffect(() => {
     fetchLakeComments(lake._id).then(setComments).catch(console.error);
   }, [lake._id]);
+
+    // Close menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (openMenuId && !event.target.closest('.lake-info-menu-container')) {
+                setOpenMenuId(null);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [openMenuId]);
 
   const lc = levelColor(lake.level);
 
@@ -35,6 +50,31 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
         showToast("Comment submitted! It will appear here once reviewed.", "success");
       })
       .catch(() => showToast("Error submitting comment.", "error"));
+  };
+
+  const handleDeleteComment = (commentId) => {
+    setDeleteConfirmToast({ commentId });
+    setOpenMenuId(null); // Close the three-dot menu
+  };
+
+  const handleDeleteConfirm = async () => {
+    const commentId = deleteConfirmToast?.commentId;
+    if (!commentId) return;
+
+    try {
+        await deleteComment(commentId);
+        setComments(prev => prev.filter(c => c.id !== commentId));
+        setDeleteConfirmToast(null);
+        showToast("Comment deleted successfully.", "success");
+    } catch (error) {
+        console.error("Delete error:", error);
+        setDeleteConfirmToast(null);
+        showToast(error.message || "Failed to delete comment.", "error");
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteConfirmToast(null);
   };
 
   const keyDown = (e) => {
@@ -136,22 +176,61 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
           )}
         </div>
 
-        {/* Recent comments */}
-        {comments.length > 0 && (
-          <div className="lake-info-comments-list">
-            <span className="lake-info-comments-heading">Recent Comments</span>
-            {comments.map(com => (
-              <div key={com.id} className="lake-info-comment-card">
-                <div className="lake-info-comment-header">
-                  <p className="lake-info-comment-user">{com.username}</p>
-                  <span className="lake-info-comment-date">{com.date}</span>
-                </div>
-                <p className="lake-info-comment-text">"{com.comment}"</p>
+          {/* Recent comments */}
+          {comments.length > 0 && (
+              <div className="lake-info-comments-list">
+                  <span className="lake-info-comments-heading">Recent Comments</span>
+                  {comments.map(com => (
+                      <div key={com.id} className="lake-info-comment-card">
+                          <div className="lake-info-comment-header">
+                              <div>
+                                  <p className="lake-info-comment-user">{com.username}</p>
+                                  <span className="lake-info-comment-date">{com.date}</span>
+                              </div>
+
+                              {/* Three-dot menu (show for comment owner or admin) */}
+                              {currentUser && (currentUser.username === com.username || currentUser.role === 'admin') && (
+                                  <div className="lake-info-menu-container">
+                                      <button
+                                          className="lake-info-menu-button"
+                                          onClick={() => setOpenMenuId(openMenuId === com.id ? null : com.id)}
+                                          aria-label="Comment options"
+                                      >
+                                          ⋮
+                                      </button>
+
+                                      {/* Dropdown menu */}
+                                      {openMenuId === com.id && (
+                                          <div className="lake-info-menu-dropdown">
+                                              <button
+                                                  className="lake-info-menu-item delete"
+                                                  onClick={() => handleDeleteComment(com.id)}
+                                              >
+                                                  Delete
+                                              </button>
+                                          </div>
+                                      )}
+                                  </div>
+                              )}
+                          </div>
+
+                          <p className="lake-info-comment-text">"{com.comment}"</p>
+                      </div>
+                  ))}
               </div>
-            ))}
-          </div>
-        )}
+          )}
       </div>
+        {deleteConfirmToast && (
+            <Toast
+                message="Are you sure you want to delete this comment?"
+                type="error"
+                onClose={handleDeleteCancel}
+                onConfirm={handleDeleteConfirm}
+                confirmText="Delete"
+                cancelText="Cancel"
+                modal
+            />
+        )}
     </>
   );
 }
