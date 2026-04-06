@@ -49,7 +49,7 @@ export default function RegisterPage({ setPage, onLogin }) {
       ))}
 
       <div style={{ marginTop:"6px" }}>
-        <PrimaryBtn onClick={submit} fullWidth>Create Account</PrimaryBtn>
+        <PrimaryBtn fullWidth>Create Account</PrimaryBtn>
       </div>
       </form>
 

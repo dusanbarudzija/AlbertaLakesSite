@@ -39,7 +39,7 @@ export default function LoginPage({ setPage, onLogin }) {
         <TextInput type="password" value={pw} onChange={e => setPw(e.target.value)} placeholder="••••••••" />
       </div>
 
-      <PrimaryBtn onClick={submit} fullWidth>Sign In</PrimaryBtn>
+      <PrimaryBtn fullWidth>Sign In</PrimaryBtn>
       </form>
 
       <p style={{ marginTop:"18px", fontSize:"13px", color:C.ink4, textAlign:"center" }}>

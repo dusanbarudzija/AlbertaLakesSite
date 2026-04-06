@@ -27,6 +27,7 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
   const cellCountDate = lake.cellCountDate ? formatDate(lake.cellCountDate) : null;
 
   const handleSubmit = () => {
+    document.activeElement?.blur();
     if (!commentText.trim()) return showToast("Comment cannot be empty.", "error");
     submitComment(lake._id, commentText.trim())
       .then(() => {
