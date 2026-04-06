@@ -1,6 +1,6 @@
 # LakeWatch
 
-A React web application for exploring Alberta lakes, built with Vite and React Leaflet.
+A React web application for exploring Alberta lakes, built with Vite and React Leaflet. Uses Node.js and MongoDB Atlas for the server and database.
 
 By Ashley Anderson, Dusan Barudzija, Fred Deng, Saad Foda, & Brighton Gosinet
 
@@ -63,7 +63,7 @@ Opens the app at `http://localhost:5173`.
 
 ### Test Accounts
 
-The following accounts are available for testing. New accounts can also be registered through the application.
+The following admin and user accounts are available for testing. New user accounts can also be registered through the application.
 
 #### Admin Account
 - **Email:** admin@test.com

@@ -63,7 +63,7 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
 
     try {
         await deleteComment(commentId);
-        setComments(comments.filter(c => c.id !== commentId));
+        setComments(prev => prev.filter(c => c.id !== commentId));
         setDeleteConfirmToast(null);
         showToast("Comment deleted successfully.", "success");
     } catch (error) {
@@ -188,8 +188,8 @@ export default function LakeInfo({ lake, currentUser, setPage, onBack }) {
                                   <span className="lake-info-comment-date">{com.date}</span>
                               </div>
 
-                              {/* Three-dot menu (only show for comment owner) */}
-                              {currentUser && currentUser.username === com.username && (
+                              {/* Three-dot menu (show for comment owner or admin) */}
+                              {currentUser && (currentUser.username === com.username || currentUser.role === 'admin') && (
                                   <div className="lake-info-menu-container">
                                       <button
                                           className="lake-info-menu-button"
