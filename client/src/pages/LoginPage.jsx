@@ -5,11 +5,13 @@ import { login } from "../services/dataService";
 
 export default function LoginPage({ setPage, onLogin }) {
   const [email, setEmail] = useState("");
-  const [pw, setPw]       = useState("");
-  const [err, setErr]     = useState("");
+  const [pw, setPw] = useState("");
+  const [err, setErr] = useState("");
 
-  const submit = () => {
+  const submit = (e) => {
+    if (e) e.preventDefault();
     if (!email || !pw) { setErr("Please fill in all fields."); return; }
+
     login(email, pw)
       .then(data => onLogin(data))
       .catch(e => setErr(e.message || "Invalid email or password."));
@@ -17,7 +19,8 @@ export default function LoginPage({ setPage, onLogin }) {
 
   return (
     <AuthWrap>
-      <div style={{ display:"flex", alignItems:"center", gap:"8px", marginBottom:"1.5rem" }}>
+      <form onSubmit={submit}>
+        <div style={{display:"flex", alignItems:"center", gap:"8px", marginBottom:"1.5rem" }}>
         <NAV_LOGO size={22} color={C.teal600} />
         <span style={{ fontFamily:"'DM Serif Display', serif", fontSize:"20px", color:C.teal800 }}>LakeWatch</span>
       </div>
@@ -37,11 +40,12 @@ export default function LoginPage({ setPage, onLogin }) {
       </div>
 
       <PrimaryBtn onClick={submit} fullWidth>Sign In</PrimaryBtn>
+      </form>
 
       <p style={{ marginTop:"18px", fontSize:"13px", color:C.ink4, textAlign:"center" }}>
         No account?{" "}
         <span onClick={() => setPage("register")} style={{ color:C.teal600, cursor:"pointer", fontWeight:"500", textDecoration:"underline" }}>Create one</span>
       </p>
-    </AuthWrap>
+    </AuthWrap >
   );
 }

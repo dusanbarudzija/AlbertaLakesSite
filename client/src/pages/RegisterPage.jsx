@@ -9,7 +9,8 @@ export default function RegisterPage({ setPage, onLogin }) {
   const [pw, setPw]             = useState("");
   const [err, setErr]           = useState("");
 
-  const submit = async () => {
+  const submit = async (e) => {
+    if (e) e.preventDefault();
     if (!username || !email || !pw) { setErr("Please fill in all fields."); return; }
     if (!email.includes("@"))       { setErr("Enter a valid email."); return; }
     if (pw.length < 6)              { setErr("Password needs 6+ characters."); return; }
@@ -29,6 +30,7 @@ export default function RegisterPage({ setPage, onLogin }) {
 
   return (
     <AuthWrap>
+      <form onSubmit={submit}>
       <div style={{ display:"flex", alignItems:"center", gap:"8px", marginBottom:"1.5rem" }}>
         <NAV_LOGO size={22} color={C.teal600} />
         <span style={{ fontFamily:"'DM Serif Display', serif", fontSize:"20px", color:C.teal800 }}>LakeWatch</span>
@@ -49,6 +51,7 @@ export default function RegisterPage({ setPage, onLogin }) {
       <div style={{ marginTop:"6px" }}>
         <PrimaryBtn onClick={submit} fullWidth>Create Account</PrimaryBtn>
       </div>
+      </form>
 
       <p style={{ marginTop:"18px", fontSize:"13px", color:C.ink4, textAlign:"center" }}>
         Already have one?{" "}

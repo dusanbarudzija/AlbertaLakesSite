@@ -38,7 +38,7 @@ export default function App() {
       subtitle: "Review and moderate submitted lake reports.",
     },
     profile: {
-      title: `${currentUser?.username ?? ""} — Profile`,
+      title: `Welcome, ${currentUser?.username ?? ""}!`,
       subtitle: "Your saved locations and activity.",
       actionLabel: "Sign Out",
       onActionClick: handleSignOut,
